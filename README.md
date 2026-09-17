@@ -29,10 +29,7 @@ Acesse:
 - Site público: [http://localhost:3000](http://localhost:3000)
 - Painel (URL oculta, não aparece no site): [http://localhost:3000/acesso](http://localhost:3000/acesso)
 
-Credenciais padrão (altere em produção; **nunca** publique no frontend):
-
-- E-mail: `admin@bazar.local`
-- Senha: `admin123`
+Credenciais do admin: defina `ADMIN_EMAIL`, `ADMIN_PASSWORD` e `AUTH_SECRET` no arquivo `.env` local (nunca commitado). Não publique senhas no repositório nem no frontend.
 
 O link `/login` antigo redireciona para a home. Não há atalhos de admin na vitrine pública.
 
