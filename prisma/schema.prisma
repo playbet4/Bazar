@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// Singleton de configurações globais do site (id = 1).
+model SiteSettings {
+  id               Int      @id
+  logoPath         String?
+  primaryColor     String
+  secondaryColor   String
+  backgroundColor  String
+  textColor        String
+  footerAddress    String
+  footerCnpj       String
+  footerPhones     String
+  footerEmail      String
+  instagramUrl     String
+  instagramVisible Boolean  @default(true)
+  whatsappUrl      String
+  whatsappVisible  Boolean  @default(true)
+  facebookUrl      String
+  facebookVisible  Boolean  @default(true)
+  tiktokUrl        String
+  tiktokVisible    Boolean  @default(true)
+  updatedAt        DateTime @updatedAt
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  products  Product[]
+}
+
+enum ProductStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+model Product {
+  id          String        @id @default(cuid())
+  title       String
+  description String
+  /// Preço em centavos (ex: R$ 49,90 = 4990).
+  priceCents  Int
+  size        String?
+  status      ProductStatus @default(AVAILABLE)
+  /// JSON array de badges visuais, ex: ["Promoção","Seminovo"].
+  tags        String        @default("[]")
+  categoryId  String
+  category    Category      @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  images      ProductImage[]
+  reservations Reservation[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  path      String
+  isCover   Boolean  @default(false)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+enum PickupMethod {
+  LOCAL
+  APP
+}
+
+enum ReservationStatus {
+  ACTIVE
+  CONFIRMED
+  CANCELLED
+  EXPIRED
+}
+
+/// Reserva de 48h. expiresAt = createdAt + 48 horas (calculado na API).
+/// A expiração automática ainda não tem worker/cron — ver src/lib/reservations.ts.
+model Reservation {
+  id             String            @id @default(cuid())
+  customerName   String
+  customerPhone  String
+  pickupMethod   PickupMethod
+  status         ReservationStatus @default(ACTIVE)
+  createdAt      DateTime          @default(now())
+  expiresAt      DateTime
+  products       Product[]
+}
