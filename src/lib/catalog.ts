@@ -56,6 +56,18 @@ export async function getAdminProducts() {
   });
 }
 
+export async function getAdminProductById(id: string) {
+  await releaseExpiredReservations();
+
+  return prisma.product.findUnique({
+    where: { id },
+    include: {
+      category: true,
+      images: { orderBy: [{ sortOrder: "asc" }, { isCover: "desc" }] },
+    },
+  });
+}
+
 export async function getActiveReservations() {
   await releaseExpiredReservations();
 

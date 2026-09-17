@@ -11,3 +11,7 @@ export function parsePriceToCents(raw: string) {
   if (!Number.isFinite(value) || value < 0) return null;
   return Math.round(value * 100);
 }
+
+export function formatPriceInput(cents: number) {
+  return (cents / 100).toFixed(2).replace(".", ",");
+}

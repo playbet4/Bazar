@@ -49,7 +49,7 @@ O site público só renderiza um ícone/link de rede se a URL não estiver vazia
 
 - Categorias: Feminino, Masculino, Utensílios
 - Produtos com 1–3 fotos, tags, status `AVAILABLE` / `RESERVED` / `SOLD`
-- Admin: `/admin/products`, `/admin/products/new`, `/admin/reservas`
+- Admin: `/admin/products`, `/admin/products/new`, `/admin/products/[id]/edit`, `/admin/reservas`
 - Vitrine na home (filtro por categoria sem reload) + sacola no navegador
 - Checkout: reserva 48h + redirecionamento `https://wa.me/...`
 

@@ -32,12 +32,13 @@ export default async function AdminProductsPage() {
               <th className="px-4 py-3 font-medium">Título</th>
               <th className="px-4 py-3 font-medium">Preço</th>
               <th className="px-4 py-3 font-medium">Status</th>
+              <th className="px-4 py-3 font-medium">Ações</th>
             </tr>
           </thead>
           <tbody>
             {products.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-stone-500">
+                <td colSpan={5} className="px-4 py-8 text-stone-500">
                   Nenhuma peça cadastrada.
                 </td>
               </tr>
@@ -63,6 +64,14 @@ export default async function AdminProductsPage() {
                   <td className="px-4 py-3">{formatBRL(product.priceCents)}</td>
                   <td className="px-4 py-3">
                     <ProductStatusSelect productId={product.id} status={product.status} />
+                  </td>
+                  <td className="px-4 py-3">
+                    <Link
+                      href={`/admin/products/${product.id}/edit`}
+                      className="text-sm font-medium text-stone-900 underline underline-offset-2 hover:opacity-70"
+                    >
+                      Editar
+                    </Link>
                   </td>
                 </tr>
               ))
