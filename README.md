@@ -27,12 +27,14 @@ npm run dev
 Acesse:
 
 - Site público: [http://localhost:3000](http://localhost:3000)
-- Admin: [http://localhost:3000/admin](http://localhost:3000/admin)
+- Painel (URL oculta, não aparece no site): [http://localhost:3000/acesso](http://localhost:3000/acesso)
 
-Credenciais padrão (altere em produção):
+Credenciais padrão (altere em produção; **nunca** publique no frontend):
 
 - E-mail: `admin@bazar.local`
 - Senha: `admin123`
+
+O link `/login` antigo redireciona para a home. Não há atalhos de admin na vitrine pública.
 
 ## O que o painel altera
 

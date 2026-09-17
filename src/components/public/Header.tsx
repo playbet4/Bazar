@@ -24,9 +24,6 @@ export function Header({ settings }: { settings: SiteSettings }) {
             Vitrine
           </Link>
           <CartButton />
-          <Link href="/login" className="text-[var(--primary-color)] hover:opacity-80">
-            Admin
-          </Link>
         </nav>
       </div>
     </header>

@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: file:./prisma/dev.db
+      AUTH_SECRET: ${AUTH_SECRET:-altere-esta-chave-em-staging}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@bazar.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      ADMIN_NAME: ${ADMIN_NAME:-Administrador}
+    volumes:
+      - bazar-data:/app/prisma
+      - bazar-uploads:/app/public/uploads
+
+volumes:
+  bazar-data:
+  bazar-uploads:

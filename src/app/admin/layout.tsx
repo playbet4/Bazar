@@ -3,15 +3,21 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import { LogoutButton } from "@/components/admin/LogoutButton";
+import { ADMIN_ACCESS_PATH } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Painel",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
 };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_ACCESS_PATH);
   }
 
   return (

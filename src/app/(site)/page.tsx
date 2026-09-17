@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getSiteSettings } from "@/lib/settings";
 import { getCatalogProducts, getCategories } from "@/lib/catalog";
 import { ProductGrid } from "@/components/public/ProductGrid";
@@ -25,19 +24,13 @@ export default async function HomePage() {
         <p className="mt-6 max-w-2xl text-lg/8 text-[color-mix(in_srgb,var(--text-color)_80%,white)]">
           Reserve pelo WhatsApp. A peça fica sua por 48 horas até a confirmação da retirada.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8">
           <a
             href="#vitrine"
-            className="rounded-full bg-[var(--primary-color)] px-5 py-2.5 text-sm font-semibold text-white"
+            className="inline-flex rounded-full bg-[var(--primary-color)] px-5 py-2.5 text-sm font-semibold text-white"
           >
             Ver vitrine
           </a>
-          <Link
-            href="/admin/products/new"
-            className="rounded-full border border-[var(--primary-color)] px-5 py-2.5 text-sm font-semibold text-[var(--primary-color)]"
-          >
-            Cadastrar peça
-          </Link>
         </div>
       </section>
 
@@ -49,7 +42,7 @@ export default async function HomePage() {
           {settings.footerPhones ? `Telefone: ${settings.footerPhones}. ` : null}
           {settings.footerEmail
             ? `E-mail: ${settings.footerEmail}.`
-            : "Os contatos aparecem aqui quando preenchidos no admin."}
+            : "Os contatos aparecem aqui quando preenchidos no painel."}
         </p>
       </section>
     </div>

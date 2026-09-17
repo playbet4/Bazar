@@ -1,5 +1,8 @@
 export const SITE_NAME = "Bazar Moda Sustentável";
 
+/** Rota oculta de login — não linkada no site público. */
+export const ADMIN_ACCESS_PATH = "/acesso";
+
 export const SESSION_COOKIE = "bazar_session";
 export const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 
