@@ -80,7 +80,7 @@ export async function createProduct(
   const parsed = productFormSchema.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
-    priceCents: parsePriceToCents(String(formData.get("price") ?? "")),
+    priceCents: parsePriceToCents(String(formData.get("price") ?? "")) ?? Number.NaN,
     size: String(formData.get("size") ?? "").trim() || undefined,
     categoryId: formData.get("categoryId"),
     tags: formData.getAll("tags").map(String),

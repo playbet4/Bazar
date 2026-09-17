@@ -1,8 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { coverPath, getAdminProducts } from "@/lib/catalog";
 import { formatBRL } from "@/lib/money";
 import { parseTags } from "@/lib/tags";
 import { ProductStatusSelect } from "@/components/admin/ProductStatusSelect";
+
+export const metadata: Metadata = { title: "Produtos" };
 
 export default async function AdminProductsPage() {
   const products = await getAdminProducts();

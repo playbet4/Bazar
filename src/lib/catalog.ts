@@ -26,9 +26,19 @@ export async function getCatalogProducts() {
   });
 
   return products.map((product) => ({
-    ...product,
+    id: product.id,
+    title: product.title,
+    description: product.description,
+    priceCents: product.priceCents,
+    size: product.size,
+    status: product.status,
     tags: parseTags(product.tags),
     coverPath: coverPath(product.images),
+    category: {
+      id: product.category.id,
+      name: product.category.name,
+      slug: product.category.slug,
+    },
   }));
 }
 
